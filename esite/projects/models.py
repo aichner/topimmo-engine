@@ -195,7 +195,13 @@ class FlatPage(Page):
         # ('code', blocks.RawHTMLBlock(null=True, blank=True, classname="full", icon='code'))
     ])
 
-    price = models.IntegerField(verbose_name="Preis", null=True, blank=False)
+    price = models.DecimalField(
+        verbose_name="Preis",
+        max_digits=11,
+        decimal_places=2,
+        null=True,
+        blank=False
+    )
 
     br_choices = (
         ('RE', 'Miete'),
