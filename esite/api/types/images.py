@@ -82,7 +82,8 @@ class Image(DjangoObjectType):
 
 def generate_image_url(image: wagtailImage, filter_spec: str) -> str:
     signature = generate_signature(image.pk, filter_spec)
-    url = reverse('wagtailimages_serve', args=(signature, image.pk, filter_spec))
+    url = reverse('wagtailimages_serve', args=(
+        signature, image.pk, filter_spec))
     return url
 
 
@@ -94,7 +95,6 @@ def ImageQueryMixin():
                                token=graphene.String(required=False),
                                id=graphene.Int(required=True))
 
-        @login_required
         def resolve_images(self, info: ResolveInfo, **_kwargs):
             return with_collection_permissions(
                 info.context,
@@ -104,7 +104,6 @@ def ImageQueryMixin():
                 )
             )
 
-        @login_required
         def resolve_image(self, info: ResolveInfo, id: int, **_kwargs):
             image = with_collection_permissions(
                 info.context,
