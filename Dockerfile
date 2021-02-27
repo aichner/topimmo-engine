@@ -39,6 +39,9 @@ RUN echo "## Installing base ##" && \
     libc-dev \
     musl-dev \
     libffi-dev \
+    python3-dev \
+    rust \
+    cargo \
     linux-headers \
     pcre-dev \
     postgresql-dev \
